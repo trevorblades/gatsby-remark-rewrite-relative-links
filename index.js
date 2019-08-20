@@ -2,7 +2,7 @@ const path = require('path');
 const visit = require('unist-util-visit');
 
 module.exports = function plugin({markdownAST, markdownNode}) {
-  visit(markdownAST, 'link', node => {
+  function visitor(node) {
     if (
       !node.url.startsWith('/') &&
       !node.url.startsWith('#') &&
@@ -18,7 +18,9 @@ module.exports = function plugin({markdownAST, markdownNode}) {
         node.url
       );
     }
-  });
+  }
+
+  visit(markdownAST, 'link', visitor);
 
   return markdownAST;
 };
