@@ -1,0 +1,22 @@
+{
+  "name": "gatsby-remark-rewrite-relative-links",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "eslintConfig": {
+    "extends": "@trevorblades"
+  },
+  "dependencies": {
+    "unist-util-visit": "^2.0.0"
+  },
+  "devDependencies": {
+    "@trevorblades/eslint-config": "^7.0.0",
+    "eslint": "^6.2.1"
+  }
+}
