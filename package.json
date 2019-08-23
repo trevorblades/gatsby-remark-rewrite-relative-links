@@ -1,22 +1,31 @@
 {
   "name": "gatsby-remark-rewrite-relative-links",
   "version": "1.0.3",
-  "description": "",
+  "description": "Fixes relative links between markdown pages in Gatsby",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "pretest": "eslint src/*",
+    "test": "echo \"Error: no test specified\" && exit",
+    "prepare": "tsc"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "eslintConfig": {
-    "extends": "@trevorblades"
-  },
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin",
+    "remark",
+    "relative",
+    "link"
+  ],
+  "author": "Trevor Blades <tdblades@gmail.com>",
+  "license": "MIT",
   "dependencies": {
     "unist-util-visit": "^2.0.0"
   },
   "devDependencies": {
     "@trevorblades/eslint-config": "^7.0.0",
-    "eslint": "^6.2.1"
+    "@types/mdast": "^3.0.2",
+    "@types/node": "^12.7.2",
+    "eslint": "^6.2.1",
+    "eslint-import-resolver-typescript": "github:JounQin/eslint-import-resolver-typescript#feat/resolve_dts",
+    "typescript": "^3.5.3"
   }
 }

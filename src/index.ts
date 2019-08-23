@@ -1,13 +1,14 @@
-const path = require('path');
-const visit = require('unist-util-visit');
+import * as path from 'path';
+import * as visit from 'unist-util-visit';
+import {Link, Parent} from 'mdast';
 
-function withPathPrefix(url, pathPrefix) {
+function withPathPrefix(url: string, pathPrefix: string): string {
   const prefixed = pathPrefix + url;
   return prefixed.replace(/\/\//, '/');
 }
 
-module.exports = function plugin({markdownAST, markdownNode, pathPrefix}) {
-  function visitor(node) {
+export = function plugin({markdownAST, markdownNode, pathPrefix}): Parent {
+  function visitor(node: Link): void {
     if (
       !node.url.startsWith('/') &&
       !node.url.startsWith('#') &&
