@@ -1,7 +1,12 @@
 const path = require('path');
 const visit = require('unist-util-visit');
 
-module.exports = function plugin({markdownAST, markdownNode}) {
+function withPathPrefix(url, pathPrefix) {
+  const prefixed = pathPrefix + url;
+  return prefixed.replace(/\/\//, '/');
+}
+
+module.exports = function plugin({markdownAST, markdownNode, pathPrefix}) {
   function visitor(node) {
     if (
       !node.url.startsWith('/') &&
@@ -9,13 +14,16 @@ module.exports = function plugin({markdownAST, markdownNode}) {
       !node.url.startsWith('mailto:') &&
       !/^https?:\/\//.test(node.url)
     ) {
-      node.url = path.resolve(
-        markdownNode.fields.slug
-          .replace(/\/$/, '')
-          .split(path.sep)
-          .slice(0, -1)
-          .join(path.sep),
-        node.url
+      node.url = withPathPrefix(
+        path.resolve(
+          markdownNode.fields.slug
+            .replace(/\/$/, '')
+            .split(path.sep)
+            .slice(0, -1)
+            .join(path.sep),
+          node.url
+        ),
+        pathPrefix
       );
     }
   }
