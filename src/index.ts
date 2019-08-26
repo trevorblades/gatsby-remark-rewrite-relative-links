@@ -16,14 +16,16 @@ export = function plugin({markdownAST, markdownNode, pathPrefix}): Parent {
       !/^https?:\/\//.test(node.url)
     ) {
       node.url = withPathPrefix(
-        path.resolve(
-          markdownNode.fields.slug
-            .replace(/\/$/, '')
-            .split(path.sep)
-            .slice(0, -1)
-            .join(path.sep),
-          node.url
-        ),
+        path
+          .resolve(
+            markdownNode.fields.slug
+              .replace(/\/$/, '')
+              .split(path.sep)
+              .slice(0, -1)
+              .join(path.sep),
+            node.url
+          )
+          .replace(/\/?(\?|#|$)/, '/$1'),
         pathPrefix
       );
     }
