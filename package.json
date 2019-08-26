@@ -1,6 +1,6 @@
 {
   "name": "gatsby-remark-rewrite-relative-links",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Fixes relative links between markdown pages in Gatsby",
   "main": "index.js",
   "scripts": {
