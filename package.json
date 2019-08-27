@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "pretest": "eslint src/*",
-    "test": "echo \"Error: no test specified\" && exit",
+    "test": "jest",
     "prepare": "tsc"
   },
   "keywords": [
@@ -22,10 +22,14 @@
   },
   "devDependencies": {
     "@trevorblades/eslint-config": "^7.0.0",
+    "@types/jest": "^24.0.18",
     "@types/mdast": "^3.0.2",
     "@types/node": "^12.7.2",
     "eslint": "^6.2.1",
     "eslint-import-resolver-typescript": "github:JounQin/eslint-import-resolver-typescript#feat/resolve_dts",
+    "jest": "^24.9.0",
+    "mdast-builder": "^1.1.1",
+    "ts-jest": "^24.0.2",
     "typescript": "^3.5.3"
   }
 }

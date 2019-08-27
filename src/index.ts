@@ -22,7 +22,7 @@ export = function plugin({markdownAST, markdownNode, pathPrefix}): Parent {
               .replace(/\/$/, '')
               .split(path.sep)
               .slice(0, -1)
-              .join(path.sep),
+              .join(path.sep) || '/',
             node.url
           )
           .replace(/\/?(\?|#|$)/, '/$1'),
