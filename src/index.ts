@@ -10,6 +10,8 @@ function withPathPrefix(url: string, pathPrefix: string): string {
 export = function plugin({markdownAST, markdownNode, pathPrefix}): Parent {
   function visitor(node: Link): void {
     if (
+      markdownNode.fields &&
+      markdownNode.fields.slug &&
       !node.url.startsWith('/') &&
       !node.url.startsWith('#') &&
       !node.url.startsWith('mailto:') &&
