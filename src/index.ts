@@ -7,7 +7,12 @@ function withPathPrefix(url: string, pathPrefix: string): string {
   return prefixed.replace(/\/\//, '/');
 }
 
-export = function plugin({markdownAST, markdownNode, pathPrefix}): Parent {
+export = function plugin({
+  markdownAST,
+  markdownNode,
+  pathPrefix,
+  getNode
+}): Parent {
   function visitor(node: Link): void {
     if (
       markdownNode.fields &&
@@ -17,13 +22,14 @@ export = function plugin({markdownAST, markdownNode, pathPrefix}): Parent {
       !node.url.startsWith('mailto:') &&
       !/^https?:\/\//.test(node.url)
     ) {
+      const parent = getNode(markdownNode.parent);
       node.url = withPathPrefix(
         path
           .resolve(
             markdownNode.fields.slug
               .replace(/\/$/, '')
               .split(path.sep)
-              .slice(0, -1)
+              .slice(0, parent.name === 'index' ? undefined : -1)
               .join(path.sep) || '/',
             node.url
           )
